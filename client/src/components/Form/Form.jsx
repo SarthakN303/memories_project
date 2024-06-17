@@ -21,7 +21,11 @@ const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles()
 
   useEffect(() => {
-    if (post) setPostData(post)
+    if (post) {
+      setPostData(post)
+    } else {
+      clear()
+    }
   }, [post])
 
   const clear = () => {
@@ -40,6 +44,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
     if (currentId === 0) {
       dispatch(createPost(postData))
+      clear()
     } else {
       dispatch(updatePost(currentId, postData))
       clear()
